@@ -19,14 +19,12 @@ export default function HomeScreen() {
         style={styles.container}
         contentContainerStyle={styles.contentContainer}>
         <View style={styles.welcomeContainer}>
-
-          />
         </View>
 
         <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
+      
 
-          <Text style={styles.getStartedText}>Get started by opening</Text>
+          <Text style={styles.getStartedText}>Synergy - Plant Parenting</Text>
 
           <View
             style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
@@ -38,12 +36,10 @@ export default function HomeScreen() {
           </Text>
         </View>
 
-        <View style={styles.helpContainer}>
-          <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-            <Text style={styles.helpLinkText}>
+        <View>
+            <Text>
               Help, it didn’t automatically reload!
             </Text>
-          </TouchableOpacity>
         </View>
       </ScrollView>
 
