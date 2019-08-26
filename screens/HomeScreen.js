@@ -12,39 +12,73 @@ import {
   ButtonGroup
 } from 'react-native';
 
-import { MonoText } from '../components/StyledText';
 
-export default function HomeScreen() {
+
+export default class HomeScreen extends React.Component{
   imgSrc = require('../assets/images/basic_medium_plant.png');
-  return (
-    <View style={styles.container}>
-      <View style = {styles.statsContainer}>
-        <Text style={styles.plantName}>Plant Name</Text>
-        <Text style={styles.statsItems}>Coins:</Text>
-        <Text style={styles.statsItems}>Plant Health:</Text>
-      </View>
+  numCoin = 200; // TODO: get from endpont
+  plantName = 'Plant Name'; // TODO: get from endpoint
+  plantHealth = 50; // TODO: get from endpoint
 
-      <View style={styles.plantPic}><Image source={this.imgSrc} style={{height: 300,width: 300}} /></View>
-      <View style={styles.tabBarInfoContainer}>
-        <Button  
-          onPress = {() => alert("TODO")}
-          title = "Water"
-        />
-         <Button
-          onPress = {() => alert("TODO")}
-          title = "Add Fertilizer"
-        />
-        <Button
-          onPress = {() => alert("TODO")}
-          title = "Shop"
-        />
-        <Button
-          onPress = {() => alert("TODO")}
-          title = "Log"
-        />
+  fertilizeButton(){
+    if(this.numCoin >= 25 && this.plantHealth <= 70){
+      this.numCoin -= 25;
+      this.plantHealth += 30;
+      alert('You now have ' + this.numCoin + ' coins');
+    }else if(this.numCoin >= 25 && this.plantHealth <=100){
+      this.numCoin -= 25;
+      this.plantHealth = 100;
+      alert('You now have ' + this.numCoin + ' coins');
+    }else if(this.numCoin < 25){
+      alert('You do not have enough coins');
+    }
+      this.forceUpdate();
+  }
+  waterButton(){
+    if(this.numCoin >= 5 && this.plantHealth <= 95){
+      this.numCoin -= 5;
+      this.plantHealth += 5;
+      alert('You now have ' + this.numCoin + ' coins');
+    }else if(this.numCoin >= 5 && this.plantHealth <=100){
+      this.numCoin -= 25;
+      this.plantHealth = 100;
+      alert('You now have ' + this.numCoin + ' coins');
+    }else if(this.numCoin < 5){
+      alert('You do not have enough coins');
+    }
+      this.forceUpdate();
+  }
+  render(){
+      return (
+        <View style={styles.container}>
+          <View style = {styles.statsContainer}>
+            <Text style={styles.plantName}> {this.plantName}</Text>
+            <Text style={styles.statsItems}>Coins: {this.numCoin}</Text>
+            <Text style={styles.statsItems}>Plant Health: {this.plantHealth}%</Text>
+          </View>
+
+          <View style={styles.plantPic}><Image source={this.imgSrc} style={{height: 300,width: 300}} /></View>
+          <View style={styles.tabBarInfoContainer}>
+            <Button  
+              onPress = {this.waterButton()}
+              title = "Water"
+            />
+            <Button
+              onPress = {this.fertilizeButton()}
+              title = "Add Fertilizer"
+            />
+            <Button
+              onPress = {() => alert("TODO")}
+              title = "Shop"
+            />
+            <Button
+              onPress = {() => alert("TODO")}
+              title = "Log"
+            />
+          </View>
       </View>
-    </View>
-  );
+    );
+    }
 }
 
 HomeScreen.navigationOptions = {
