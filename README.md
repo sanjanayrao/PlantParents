@@ -1,1 +1,3 @@
-# Plant Parents is a cooperative app that allows 2 people to raise a plant
+# Plant Parenthood
+
+Plant Parenthood is a cooperative mobile application that allows two people to raise a plant together.
